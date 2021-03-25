@@ -1,23 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+// import HomePage from "./pages/Home";
+import HomePage from "./pages/home";
+import Navbar from "./components/navbar";
+import FaqPage from "./pages/faq";
+import ProfilePage from "./pages/profile";
+import ServicesPage from "./pages/services";
+import LoginPage from "./pages/login";
+import SignupPage from "./pages/signup";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Sidebar from "./components/siderbar";
+import { AppBar } from "@material-ui/core";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <Router>
+        {/*  refactoring style!!!*/}
+
+        <AppBar
+          position="sticky"
+          style={{
+            backgroundColor: "white",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            // paddingRight: "2rem",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <div style={{ marginRight: "auto" }}>
+            <Sidebar />
+          </div>
+
+          <Navbar />
+        </AppBar>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/faq">
+            <FaqPage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/profile">
+            <ProfilePage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/services">
+            <ServicesPage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/signup">
+            <SignupPage />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
