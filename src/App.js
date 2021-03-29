@@ -9,6 +9,8 @@ import SignupPage from "./pages/signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Sidebar from "./components/siderbar";
 import { AppBar } from "@material-ui/core";
+import * as routes from "../src/routes";
+import ServiceDetails from "./pages/serviceDetails";
 
 function App() {
   return (
@@ -33,32 +35,37 @@ function App() {
           <Navbar />
         </AppBar>
         <Switch>
-          <Route exact path="/">
+          <Route exact path={routes.home}>
             <HomePage />
           </Route>
         </Switch>
         <Switch>
-          <Route path="/faq">
+          <Route path={routes.faq}>
             <FaqPage />
           </Route>
         </Switch>
         <Switch>
-          <Route path="/profile">
+          <Route path={routes.profile}>
             <ProfilePage />
           </Route>
         </Switch>
         <Switch>
-          <Route path="/services">
+          <Route exact path={routes.services}>
             <ServicesPage />
           </Route>
         </Switch>
         <Switch>
-          <Route path="/login">
+          <Route exact path={routes.serviceDetails}>
+            <ServiceDetails />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path={routes.login}>
             <LoginPage />
           </Route>
         </Switch>
         <Switch>
-          <Route path="/signup">
+          <Route path={routes.signup}>
             <SignupPage />
           </Route>
         </Switch>

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export default createSlice({
-  name: "counter",
+  name: "services",
   initialState: {
     value: 0,
-    services: [],
+    items: [],
+    isLoading: false,
   },
   reducers: {
     increment: (state) => {
@@ -16,13 +17,20 @@ export default createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload;
     },
-    setting: {
-      prepare(services) {
-        return { payload: { services } };
-      },
-      reducer(state, action) {
-        state.services = action.payload.services;
-      },
+    // servicesFetched: {
+    //   prepare(services) {
+    //     return { payload: { services } };
+    //   },
+    //   reducer(state, action) {
+    //     state.items = action.payload.services;
+    //   },
+    // },
+    fetchingStarted: (state) => {
+      state.isLoading = true;
+    },
+    fetchServicesSuccess: (state, { payload }) => {
+      state.items = payload;
+      state.isLoading = false;
     },
   },
 });

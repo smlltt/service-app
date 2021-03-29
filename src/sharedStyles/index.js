@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button, Typography } from "@material-ui/core";
+import { Button, CircularProgress, Typography } from "@material-ui/core";
 
 export const FlexCenterWrapper = styled.div`
   display: flex;
@@ -31,3 +31,7 @@ export const DarkColor = styled.div`
     color: black;
   }
 `;
+
+export const MainSpinner = styled(CircularProgress)({
+  color: "#ff1493",
+});

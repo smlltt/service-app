@@ -13,6 +13,7 @@ import {
 } from "../../sharedStyles";
 import CardContent from "@material-ui/core/CardContent";
 import { Box } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const ServiceItem = ({ service }) => {
   const shortText = (text, maxLength = 80) => {
@@ -39,7 +40,9 @@ const ServiceItem = ({ service }) => {
         </DescriptionTypography>
         <AlignedFlexCenterWrapper>
           <MainButton size="large">
-            <MainButtonTypography>Learn More</MainButtonTypography>
+            <MainButtonTypography>
+              <Link to={`/services/${service.id}`}>Learn More</Link>
+            </MainButtonTypography>
           </MainButton>
         </AlignedFlexCenterWrapper>
       </CardContent>

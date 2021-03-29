@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
-import { getServices } from "../../store";
 import { PageWrapper, ServicesWrapper } from "./styles";
 import ServiceItem from "../../components/service";
-import { FlexCenterWrapper } from "../../sharedStyles";
+import { FlexCenterWrapper, MainSpinner } from "../../sharedStyles";
 import Fade from "react-reveal/Fade";
 import Hero from "../../components/hero";
 import { useSelector, useDispatch } from "react-redux";
-import { servicesSelectors } from "../../redux/services";
-import { servicesActions } from "../../redux/services";
+import { servicesOperations, servicesSelectors } from "../../redux/services";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const services = useSelector(servicesSelectors.services);
-  // const [services, setServices] = useState([]);
+  const isLoading = useSelector(servicesSelectors.isLoading);
 
   useEffect(() => {
-    // setServices(getServices());
-    dispatch(servicesActions.setting(getServices()));
+    dispatch(servicesOperations.fetchServices());
   }, []);
 
   const mappedServices = services.map((service) => (
@@ -29,7 +26,10 @@ const HomePage = () => {
       <FlexCenterWrapper>
         <ServicesWrapper>
           <Fade left>
-            <FlexCenterWrapper>{mappedServices}</FlexCenterWrapper>
+            <FlexCenterWrapper>
+              {isLoading && <MainSpinner />}
+              {mappedServices}
+            </FlexCenterWrapper>
           </Fade>
         </ServicesWrapper>
       </FlexCenterWrapper>
