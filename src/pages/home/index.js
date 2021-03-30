@@ -23,16 +23,16 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <Hero />
-      <FlexCenterWrapper>
-        <ServicesWrapper>
-          <Fade left>
-            <FlexCenterWrapper>
-              {isLoading && <MainSpinner />}
-              {mappedServices}
-            </FlexCenterWrapper>
-          </Fade>
-        </ServicesWrapper>
-      </FlexCenterWrapper>
+      {/*<FlexCenterWrapper>*/}
+      <ServicesWrapper>
+        <Fade left>
+          <FlexCenterWrapper>
+            {isLoading && <MainSpinner />}
+            {mappedServices}
+          </FlexCenterWrapper>
+        </Fade>
+      </ServicesWrapper>
+      {/*</FlexCenterWrapper>*/}
       <div>
         Icons made by{" "}
         <a href="https://www.flaticon.com/authors/monkik" title="monkik">

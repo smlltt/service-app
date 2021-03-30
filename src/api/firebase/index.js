@@ -18,6 +18,11 @@ const fireApi = {
     const snapshot = await db.collection("services").get();
     return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   },
+  getServiceById: async (id) => {
+    const serviceRef = await db.collection("services").doc(id).get();
+    const service = serviceRef ? serviceRef.data() : "error";
+    return service;
+  },
 };
 
 export default fireApi;

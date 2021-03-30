@@ -7,7 +7,8 @@ export const PageWrapper = styled.div`
 `;
 
 export const ServicesWrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
+  //height: 100vh;
+  //display: flex;
+  //align-items: center;
+  margin-top: 5rem;
 `;
