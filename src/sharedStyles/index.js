@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { Button, CircularProgress, Typography } from "@material-ui/core";
+import * as formsStyles from "./forms";
+import { Box, Button, CircularProgress, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+
+export { formsStyles };
 
 export const FlexCenterWrapper = styled.div`
   display: flex;
@@ -35,3 +39,13 @@ export const DarkColor = styled.div`
 export const MainSpinner = styled(CircularProgress)({
   color: "#ff1493",
 });
+
+export const MarginTopHalfRem = styled(Box)`
+  && {
+    margin-top: 0.5rem;
+  }
+`;
+
+export const LinkNoDecoration = styled(Link)`
+  text-decoration: none;
+`;

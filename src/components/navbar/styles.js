@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MenuItem } from "@material-ui/core";
+import { MenuItem, Typography } from "@material-ui/core";
 
 export const SignupMenuItem = styled(MenuItem)`
   && {
@@ -20,4 +20,10 @@ export const DrawerWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+`;
+
+export const NavbarItemTypography = styled(Typography)`
+  && {
+    color: black;
+  }
 `;

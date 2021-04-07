@@ -15,17 +15,26 @@ const validationSchema = yup.object({
     .string("Enter your email")
     .email("Enter a valid email")
     .required("Email is required"),
+  fullName: yup.string("Enter your full name"),
+  avatar: yup.string("Provide your avatar"),
   password: yup
     .string("Enter your password")
     .min(5, "Password should be of minimum 5 characters length")
     .required("Password is required"),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Password confirmation is required"),
 });
 
-const LoginComponent = ({ onSubmit, onGoogleSubmit }) => {
+const SignupComponent = ({ onSubmit, onGoogleSubmit }) => {
   const formik = useFormik({
     initialValues: {
       email: "",
+      fullName: "",
+      avatar: "",
       password: "",
+      passwordConfirmation: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
@@ -36,7 +45,7 @@ const LoginComponent = ({ onSubmit, onGoogleSubmit }) => {
   return (
     <formsStyles.FormWrapper>
       <formsStyles.TextFieldWrapper onSubmit={formik.handleSubmit}>
-        <Typography variant={"h5"}>Login</Typography>
+        <Typography variant={"h5"}>Signup</Typography>
         <MarginTopHalfRem />
         <TextField
           fullWidth
@@ -50,6 +59,22 @@ const LoginComponent = ({ onSubmit, onGoogleSubmit }) => {
         />
         <TextField
           fullWidth
+          id="fullName"
+          name="fullName"
+          label="Full Name (optional)"
+          value={formik.values.fullName}
+          onChange={formik.handleChange}
+        />
+        <TextField
+          fullWidth
+          id="avatar"
+          name="avatar"
+          label="Avatar (optional)"
+          value={formik.values.avatar}
+          onChange={formik.handleChange}
+        />
+        <TextField
+          fullWidth
           id="password"
           name="password"
           label="Your Password"
@@ -59,9 +84,26 @@ const LoginComponent = ({ onSubmit, onGoogleSubmit }) => {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
+        <TextField
+          fullWidth
+          id="passwordConfirmation"
+          name="passwordConfirmation"
+          label="Password Confirmation"
+          type="password"
+          value={formik.values.passwordConfirmation}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.passwordConfirmation &&
+            Boolean(formik.errors.passwordConfirmation)
+          }
+          helperText={
+            formik.touched.passwordConfirmation &&
+            formik.errors.passwordConfirmation
+          }
+        />
         <MarginTopHalfRem />
         <formsStyles.MainFormButton type="submit">
-          <MainButtonTypography>Login</MainButtonTypography>
+          <MainButtonTypography>Signup</MainButtonTypography>
         </formsStyles.MainFormButton>
         <MarginTopHalfRem />
         <GoogleButton onClick={onGoogleSubmit} />
@@ -70,4 +112,4 @@ const LoginComponent = ({ onSubmit, onGoogleSubmit }) => {
   );
 };
 
-export default LoginComponent;
+export default SignupComponent;

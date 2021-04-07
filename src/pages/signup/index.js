@@ -1,7 +1,18 @@
 import React from "react";
+import SignupComponent from "./signup.component";
 
 const signupPage = () => {
-  return <div>signup</div>;
+  const onSubmit = (credentials) => {
+    console.log(credentials);
+  };
+
+  const onGoogleSubmit = () => {
+    console.log("google button clicked");
+  };
+
+  return (
+    <SignupComponent onSubmit={onSubmit} onGoogleSubmit={onGoogleSubmit} />
+  );
 };
 
 export default signupPage;

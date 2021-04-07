@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { Drawer, IconButton, List, MenuList, Toolbar } from "@material-ui/core";
-import { DrawerWrapper, OrdinaryMenuItem, SignupMenuItem } from "./styles";
-import { Link } from "react-router-dom";
+import {
+  DrawerWrapper,
+  NavbarItemTypography,
+  OrdinaryMenuItem,
+  SignupMenuItem,
+} from "./styles";
 import { DarkMenuIcon } from "../siderbar/styles";
 import { useMediaQuery } from "react-responsive";
-import { DarkColor } from "../../sharedStyles";
+import {
+  DarkColor,
+  LinkNoDecoration,
+  MainButtonTypography,
+} from "../../sharedStyles";
 import { ArrowUpward } from "@material-ui/icons";
 
 const Navbar = () => {
@@ -26,15 +34,21 @@ const Navbar = () => {
     (item) =>
       item === "Signup" ? (
         <SignupMenuItem key={item}>
-          <Link to={`/${item}`}>{item}</Link>
+          <LinkNoDecoration to={`/${item}`}>
+            <MainButtonTypography>{item}</MainButtonTypography>
+          </LinkNoDecoration>
         </SignupMenuItem>
       ) : item === "Home" ? (
         <OrdinaryMenuItem key={item}>
-          <Link to={`/`}>{item}</Link>
+          <LinkNoDecoration to={`/`}>
+            <NavbarItemTypography>{item}</NavbarItemTypography>
+          </LinkNoDecoration>
         </OrdinaryMenuItem>
       ) : (
         <OrdinaryMenuItem key={item}>
-          <Link to={`/${item}`}>{item}</Link>
+          <LinkNoDecoration to={`/${item}`}>
+            <NavbarItemTypography>{item}</NavbarItemTypography>
+          </LinkNoDecoration>
         </OrdinaryMenuItem>
       )
   );
