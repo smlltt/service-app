@@ -9,6 +9,15 @@ export const MainFormButton = styled(Button)`
   }
 `;
 
+export const SecondaryFormButton = styled(Button)`
+  && {
+    background: white;
+    border: 2px solid #ff1493;
+    width: 240px;
+    height: 50px;
+  }
+`;
+
 export const FormWrapper = styled.div`
   && {
     margin-top: 5rem;

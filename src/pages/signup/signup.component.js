@@ -2,13 +2,14 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
-import { Typography } from "@material-ui/core";
+import { Input, Typography } from "@material-ui/core";
 import GoogleButton from "react-google-button";
 import {
   MainButtonTypography,
   MarginTopHalfRem,
   formsStyles,
 } from "../../sharedStyles";
+import { FormHelperTextLeft } from "./styles";
 
 const validationSchema = yup.object({
   email: yup
@@ -16,7 +17,19 @@ const validationSchema = yup.object({
     .email("Enter a valid email")
     .required("Email is required"),
   fullName: yup.string("Enter your full name"),
-  avatar: yup.string("Provide your avatar"),
+  avatar: yup
+    .mixed()
+    .test("fileSize", "File size is too large (max 1MB)", (value) => {
+      if (value) {
+        return value.size <= 1000000;
+      }
+    })
+    .test("fileType", "Accepted formats: jpg, jpeg, png", (value) => {
+      if (value) {
+        const supportedFormats = ["image/jpg", "image/jpeg", "image/png"];
+        return supportedFormats.includes(value.type);
+      }
+    }),
   password: yup
     .string("Enter your password")
     .min(5, "Password should be of minimum 5 characters length")
@@ -65,14 +78,33 @@ const SignupComponent = ({ onSubmit, onGoogleSubmit }) => {
           value={formik.values.fullName}
           onChange={formik.handleChange}
         />
-        <TextField
-          fullWidth
-          id="avatar"
-          name="avatar"
-          label="Avatar (optional)"
-          value={formik.values.avatar}
-          onChange={formik.handleChange}
-        />
+        <MarginTopHalfRem />
+        <MarginTopHalfRem />
+        <label htmlFor="avatar">
+          <Input
+            style={{ display: "none" }}
+            id="avatar"
+            type="file"
+            name="avatar"
+            onChange={(event) =>
+              formik.setFieldValue("avatar", event.currentTarget.files[0])
+            }
+            error={formik.touched.avatar && Boolean(formik.errors.avatar)}
+          />
+
+          <formsStyles.SecondaryFormButton component="span">
+            {formik.values.avatar.name
+              ? formik.values.avatar.name
+              : "Upload Your Avatar"}
+          </formsStyles.SecondaryFormButton>
+        </label>
+        <FormHelperTextLeft
+          error={true}
+          style={{ display: "flex", alignSelf: "start" }}
+        >
+          {formik.touched.avatar && formik.errors.avatar}
+        </FormHelperTextLeft>
+
         <TextField
           fullWidth
           id="password"

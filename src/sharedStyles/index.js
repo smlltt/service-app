@@ -30,6 +30,17 @@ export const MainButtonTypography = styled(Typography)({
   color: "white",
 });
 
+export const SecondaryButton = styled(Button)`
+  && {
+    background: white;
+    border: 2px solid #ff1493;
+  }
+`;
+
+export const SecondaryButtonTypography = styled(Typography)({
+  color: "#ff1493",
+});
+
 export const DarkColor = styled.div`
    {
     color: black;
