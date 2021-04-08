@@ -2,14 +2,14 @@ import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import TextField from "@material-ui/core/TextField";
-import { Input, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import GoogleButton from "react-google-button";
 import {
   MainButtonTypography,
   MarginTopHalfRem,
   formsStyles,
 } from "../../sharedStyles";
-import { FormHelperTextLeft } from "./styles";
+import { FormHelperTextLeft, HiddenInput } from "./styles";
 
 const validationSchema = yup.object({
   email: yup
@@ -81,8 +81,7 @@ const SignupComponent = ({ onSubmit, onGoogleSubmit }) => {
         <MarginTopHalfRem />
         <MarginTopHalfRem />
         <label htmlFor="avatar">
-          <Input
-            style={{ display: "none" }}
+          <HiddenInput
             id="avatar"
             type="file"
             name="avatar"
@@ -98,10 +97,7 @@ const SignupComponent = ({ onSubmit, onGoogleSubmit }) => {
               : "Upload Your Avatar"}
           </formsStyles.SecondaryFormButton>
         </label>
-        <FormHelperTextLeft
-          error={true}
-          style={{ display: "flex", alignSelf: "start" }}
-        >
+        <FormHelperTextLeft error={true}>
           {formik.touched.avatar && formik.errors.avatar}
         </FormHelperTextLeft>
 
